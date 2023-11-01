@@ -1,5 +1,6 @@
 import {ScrollView,Image, StyleSheet,View, Text } from 'react-native'
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Navbar from './Navbar'
 import Carousel from 'react-native-snap-carousel';
 
@@ -24,6 +25,25 @@ const GrocerieItem = ({ item }) => (
 
 const Swiggy = () => {
 
+  const [name, setName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  
+  useEffect(() => {
+    const retrieveData = async () => {
+      try {
+        const storedName = await AsyncStorage.getItem('name');
+        const storedMobileNumber = await AsyncStorage.getItem('mobileNumber');
+       setMobileNumber(storedMobileNumber)
+        setName(storedName);
+        
+      } catch (error) {
+        console.error('Error retrieving data: ', error);
+      }
+    };
+
+    retrieveData();
+  }, []);
+
   const carouselData = [
    
     { imageUri: 'https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/v1674029850/PC_Creative%20refresh/3D_bau/banners_new/Dosa.png' },
@@ -46,7 +66,7 @@ const Swiggy = () => {
     <ScrollView >
       <Navbar/>
       <ScrollView contentContainerStyle={{backgroundColor:"white",paddingLeft:10,justifyContent:"space-evenly",height:500}}>
-        <Text style={{fontSize:24,color:"orange"}}>Welcome to Swiggy!  😄</Text>
+        <Text style={{fontSize:24,color:"orange"}}>Welcome  {name}!  😄</Text>
         <View style={styles.card}>
             <View style={{width:"59%",height:100,justifyContent:"space-evenly",paddingLeft:10}}>
             <Text style={styles.heading}>ORDER FOOD</Text>
