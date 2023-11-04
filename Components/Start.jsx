@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
         fontSize:35,
         fontWeight:"bold",
         color:"white",
-        opacity:0.7
+        // opacity:0.7
       
     },
 });

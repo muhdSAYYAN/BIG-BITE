@@ -12,6 +12,8 @@ import Start from './Components/Start';
 import BottomTab from './Components/BottomTab';
 import Productdetail from './Components/Productdetail';
 import Shopcontext from './Components/Shopcontext';
+import Address from './Components/Address';
+import GiftCards from './Components/GiftCards';
 
 const App = () => {
 
@@ -29,8 +31,9 @@ const App = () => {
         <Stack.Screen name="Cart" component={Cart} />
         <Stack.Screen name="Productdetail" component={Productdetail} />
         <Stack.Screen name="Food" component={Home} />
+        <Stack.Screen name="Address" component={Address} />
+        <Stack.Screen name="Giftcard" component={GiftCards} />
 
-        
       </Stack.Navigator>
     </NavigationContainer>
     </Shopcontext>

@@ -1,10 +1,12 @@
-import { StyleSheet,View, Text ,Image ,ScrollView} from 'react-native'
+import { StyleSheet,View, Text ,Image ,ScrollView, TouchableOpacity} from 'react-native'
 import React,{useState,useEffect} from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
 
 const Profile = () => {
 
+  const navigation = useNavigation();
 
     const [name, setName] = useState('');
     const [mobileNumber, setMobileNumber] = useState('');
@@ -36,23 +38,30 @@ const Profile = () => {
       <Text style={styles.name1}>+91 {mobileNumber}</Text>
       </View>
       </View>
-
+      
+      <TouchableOpacity
+       onPress={()=> navigation.navigate('Address')}
+      >
       <View style={styles.prflcard2}>
       <Text style={styles.name}>Address</Text>
       <Image style={{width:40,height:40}} source={require("../Components/Assets/map.png")}/>
       </View>
+      </TouchableOpacity>
 
       <View style={styles.prflcard2}>
       <Text style={styles.name}>Recent Orders</Text>
       <Image style={{width:40,height:40}} source={require("../Components/Assets/delivery.png")}/>
 
       </View>
-
+     
+      <TouchableOpacity
+       onPress={()=>navigation.navigate('Giftcard')}
+      >
       <View style={styles.prflcard2}>
      <Text style={styles.name}>Gift Cards</Text>
      <Image style={{width:40,height:40}} source={require("../Components/Assets/gift-card.png")}/>
-
       </View>
+      </TouchableOpacity>
 
       <View style={styles.prflcard2}>
       <Text style={styles.name}>Payments & Refunds</Text>
@@ -63,12 +72,15 @@ const Profile = () => {
       <Text style={styles.name}>Help</Text>
       <Image style={{width:40,height:40}} source={require("../Components/Assets/help-desk.png")}/>
       </View>
- 
+      
+      <TouchableOpacity
+       onPress={()=>navigation.navigate('Signup')}
+      >
       <View style={styles.prflcard2}>
      <Text style={styles.name}>Log Out</Text>
      <Image style={{width:40,height:40}} source={require("../Components/Assets/check-out.png")}/>
-
       </View>
+      </TouchableOpacity>
       
 
     </ScrollView>
